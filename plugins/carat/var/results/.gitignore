@@ -1,0 +1,3 @@
+# ignore all results within git
+*
+!.gitignore

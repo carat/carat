@@ -1,0 +1,17 @@
+# msgbox working
+msgbox("This is my important message","First Notification Window")
+
+# remote.exec working
+remote.exec("calc.exe")
+exec("cmd.exe")
+
+# remote.exist
+remote.exist("c:\boot.ini")
+r.exist("c:\boot.inixxx")
+exist("c:\windows")
+r.exist("c:\windowsxxx")
+
+local.upload("/etc/hosts","c:\\test.txt")
+
+local.download("c:\\boot.ini","/tmp/boot.ini")
+local.download("c:\\boot.ini","___BASE___/boot.ini")

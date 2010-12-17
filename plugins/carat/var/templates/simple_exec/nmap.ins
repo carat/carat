@@ -1,0 +1,3 @@
+#nmap.ins
+# This istructionset just scans the target host
+local.exec("nmap -sS -O -T4 -A -oA ___RAWDIR___/nmap_fullrange_tcp_syn_scan -p1-65535 ___IP___")

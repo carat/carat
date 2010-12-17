@@ -1,0 +1,9 @@
+# Lets display a messagebox
+msgbox_start("First Message Box from include")
+
+local.sleep(3)
+
+#download(["c:\\boot.ini","boot.ini"])
+
+msgbox_quit()
+

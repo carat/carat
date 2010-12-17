@@ -1,0 +1,9 @@
+#sha1sum.ins is used to run a sha1sum utility on a file
+#sha1sum is available at ftp://ftp.gnupg.org/gcrypt/binary/sha1sum.exe
+
+local.upload("___INSDIR___/sha1sum.exe","___RWORKDIR___sha1sum.exe")
+
+remote.exec_read("cmd /c ___RWORKDIR___sha1sum.exe %WINDIR%\win.ini","___RAWDIR___/collected_sha1_hashes.txt")
+remote.exec_read("cmd /c ___RWORKDIR___sha1sum.exe %WINDIR%\system32\cmd.exe","___RAWDIR___/collected_sha1_hashes.txt")
+remote.exec_read("cmd /c ___RWORKDIR___sha1sum.exe %WINDIR%\system32\calc.exe","___RAWDIR___/collected_sha1_hashes.txt")
+remote.exec_read("cmd /c ___RWORKDIR___sha1sum.exe c:\boot.ini","___BASE___/collected_sha1_hashes.txt")

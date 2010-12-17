@@ -1,0 +1,49 @@
+# This is the first instruction file written with the new engine
+#
+# ___RAWDIR___ is replaced with the location where the results will be stored in raw format
+#
+
+msgbox("Click ok to start the scan","Carat")
+
+# Migrate into the clients explorer.exe process to gain access to the desktop
+#local.executescript("migrate","explorer.exe")
+
+
+remote.exec_read("cmd.exe /c DATE /t","___RAWDIR___/audit_startdate.txt")
+remote.exec_read("cmd.exe /c TIME /t","___RAWDIR___/audit_starttime.txt")
+
+# Dump the registry hives
+remote.exec("yes","cmd.exe /c reg EXPORT HKLM ___RWORKDIR___/HKLM.reg")
+remote.exec("yes","cmd.exe /c reg EXPORT HKCU ___RWORKDIR___/HKCU.reg")
+remote.exec("yes","cmd.exe /c reg EXPORT HKCR ___RWORKDIR___/HKCR.reg")
+remote.exec("yes","cmd.exe /c reg EXPORT HKU ___RWORKDIR___/HKU.reg")
+remote.exec("yes","cmd.exe /c reg EXPORT HKCC ___RWORKDIR___/HKCC.reg")
+remote.exec_read("cmd.exe /c cacls %HOMEDRIVE% /T","___RAWDIR___/cacls_homedrive.txt")
+remote.exec_read("cmd.exe /c cacls %systemdrive% /T","___RAWDIR___/cacls_homedrive.txt")
+remote.exec_read("cmd.exe /c tree %systemdrive%","___RAWDIR___/tree_systemdrive.txt")
+remote.exec_read("cmd.exe /c tree %HOMEDRIVE%","___RAWDIR___/tree_homedrive.txt")
+
+include "winenum.ins"
+
+#include "wmic.ins"
+#include "wmic-clip.ins"
+
+include "wmic-clip-mem.ins"
+include "sha1sum.ins"
+include "nmap.ins"
+
+include "outbound.ins"
+
+# Download all the content of the working dir into the raw directory
+local.dir_download("___RWORKDIR___","___RAWDIR___")
+
+# Remove the temporary working folder on the client
+remote.exec("yes","cmd.exe /c rmdir /S /Q ___RWORKDIR___")
+
+remote.exec_read("cmd.exe /c DATE /t","___RAWDIR___/audit_stopdate.txt")
+remote.exec_read("cmd.exe /c TIME /t","___RAWDIR___/audit_stoptime.txt")
+
+# A way of calling the report-gen.rb script but with a system command which might not be the desired way.
+local.ruby(reportscript="#{@sessionData['work_dir']}/report-gen.rb"; puts "Starting the report generation #{reportscript} now"; system("ruby #{reportscript}");)
+
+local.ruby(system("cd #{@sessionData['work_dir']}/report/intermediate;xsltproc template.xsl template.xml > ../html/report.html"))

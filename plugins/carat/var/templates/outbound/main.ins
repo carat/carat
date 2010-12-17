@@ -1,0 +1,21 @@
+# This is the first instruction file written with the new engine
+#
+# ___RAWDIR___ is replaced with the location where the results will be stored in raw format
+#
+
+msgbox("Click OK to test the oubound http communication","Carat - Outbound HTTP Test")
+
+remote.exec_read("cmd.exe /c DATE /t","___RAWDIR___/audit_startdate.txt")
+remote.exec_read("cmd.exe /c TIME /t","___RAWDIR___/audit_starttime.txt")
+
+include "outbound.ins"
+
+# Remove the temporary working folder on the client
+remote.exec("yes","cmd.exe /c rmdir /S /Q ___RWORKDIR___")
+
+remote.exec_read("cmd.exe /c DATE /t","___RAWDIR___/audit_stopdate.txt")
+remote.exec_read("cmd.exe /c TIME /t","___RAWDIR___/audit_stoptime.txt")
+
+# A way of calling the report-gen.rb script but with a system command which might not be the desired way.
+local.ruby(reportscript="#{@sessionData['work_dir']}/report-gen.rb"; puts "Starting the report generation #{reportscript} now"; system("ruby #{reportscript}");)
+local.ruby(system("cd #{@sessionData['work_dir']}/report/intermediate;xsltproc template.xsl template.xml > ../html/report.html"))

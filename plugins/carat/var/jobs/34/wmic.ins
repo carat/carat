@@ -1,0 +1,98 @@
+# This instruction file contains all the steps to gather information using the WMIC commands
+# Because the output of WMIC is somewhat strange, we had to find a workaround to ensue no 
+# files are written to disk. 
+
+
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\LOADORDER.xml LOADORDER  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\LOGICALDISK.xml LOGICALDISK  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\USERACCOUNT.xml USERACCOUNT  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\BASEBOARD.xml BASEBOARD  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\BIOS.xml BIOS  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\BOOTCONFIG.xml BOOTCONFIG  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\CDROM.xml CDROM  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\COMPUTERSYSTEM.xml COMPUTERSYSTEM  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\CPU.xml CPU  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\CSPRODUCT.xml CSPRODUCT  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\DCOMAPP.xml DCOMAPP  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\DMACHANNEL.xml DMACHANNEL  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\ENVIRONMENT.xml ENVIRONMENT  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\GROUP.xml GROUP  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\IRQ.xml IRQ  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\JOB.xml JOB  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\LOGON.xml LOGON  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\MEMLOGICAL.xml MEMLOGICAL  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\MEMPHYSICAL.xml MEMPHYSICAL  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\NETLOGIN.xml NETLOGIN  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\NETPROTOCOL.xml NETPROTOCOL  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\NICCONFIG.xml NICCONFIG  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\NTDOMAIN.xml NTDOMAIN  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\OS.xml OS LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PAGEFILE.xml PAGEFILE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PARTITION.xml PARTITION  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PORT.xml PORT LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PRINTERCONFIG.xml PRINTERCONFIG  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PRINTJOB.xml PRINTJOB  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PROCESS.xml PROCESS  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\QFE.xml QFE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\RECOVEROS.xml RECOVEROS  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SERVER.xml SERVER  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SERVICE.xml SERVICE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SHARE.xml SHARE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SOFTWAREFEATURE.xml SOFTWAREFEATURE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SOUNDDEV.xml SOUNDDEV  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\STARTUP.xml STARTUP  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SYSACCOUNT.xml SYSACCOUNT  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\SYSTEMSLOT.xml SYSTEMSLOT  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\TIMEZONE.xml TIMEZONE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\WMISET.xml WMISET  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\VOLTAGE.xml VOLTAGE  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PRODUCT.xml PRODUCT  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\NIC.xml NIC  LIST FULL /FORMAT:RAWXML")
+
+remote.exec("yes","wmic /OUTPUT:___RWORKDIR___\\PRINTER.xml PRINTER  LIST FULL /FORMAT:RAWXML")
+

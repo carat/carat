@@ -1,0 +1,42 @@
+#outbound.ins
+#
+# Proof of concept of an outbound test
+# starts a http captuer server out of metasploit and then executes iexplorer on client
+# after finishing it will close all jobs
+
+local.msf_aux(auxiliary/server/capture/outbound)
+local.msf_aux(auxiliary/server/fakedns)
+
+# Giving the module time to load
+local.sleep(1) 
+
+# Preparing to get the individual URL via the internetexplorer
+remote.exec("yes","cmd /c echo CreateObject("Wscript.Shell").run "iexplore.exe -new http://www.porn.com",0,False > ___RWORKDIR___outbound.vbs")
+
+# Write a timestamp into a file
+local.ruby("fd = File.open("___RAWDIR___/outbound_requests_sent.xml", "a");fd.puts "<sent_req><timestamp>#{Time.now}</timestamp><data>http://www.porn.com</data></sent_req>";fd.close;")
+
+remote.exec("yes","wscript ___RWORKDIR___outbound.vbs")
+
+# Preparing to get the individual URL via the internetexplorer
+remote.exec("yes","cmd /c echo CreateObject("Wscript.Shell").run "iexplore.exe -new http://www.heise.de",0,False > ___RWORKDIR___outbound.vbs")
+
+# Write a timestamp into a file
+local.ruby("fd = File.open("___RAWDIR___/outbound_requests_sent.xml", "a");fd.puts "<sent_req><timestamp>#{Time.now}</timestamp><data>http://www.heise.de</data></sent_req>";fd.close;")
+
+remote.exec("yes","wscript ___RWORKDIR___outbound.vbs")
+
+# Preparing to get the individual URL via the internetexplorer
+remote.exec("yes","cmd /c echo CreateObject("Wscript.Shell").run "iexplore.exe -new http://www.good.com",0,False > ___RWORKDIR___outbound.vbs")
+
+# Write a timestamp into a file
+local.ruby("fd = File.open("___RAWDIR___/outbound_requests_sent.xml", "a");fd.puts "<sent_req><timestamp>#{Time.now}</timestamp><data>http://www.good.com</data></sent_req>";fd.close;")
+
+remote.exec("yes","wscript ___RWORKDIR___outbound.vbs")
+
+# Ensure that the request has written and handled properly
+local.sleep(2)
+
+# Kill the fakedns and the http daemon
+local.msf_jobkillall_name(auxiliary/server/fakedns)
+local.msf_jobkillall_name(auxiliary/server/capture/outbound)

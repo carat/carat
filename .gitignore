@@ -1,0 +1,6 @@
+# ignore generated documentation
+doc
+carat_cli_doc
+
+# ignore the generated logs
+plugins/carat/var/log/*
